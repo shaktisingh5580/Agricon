@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricon Learn More</title>
+    <style>
+        /* CSS styles */
+        :root {
+            --background: hsl(36, 39%, 88%);
+            --foreground: hsl(36, 45%, 15%);
+            --primary: hsl(36, 45%, 70%);
+            --primary-foreground: hsl(36, 45%, 11%);
+            --secondary: hsl(40, 35%, 77%);
+            --secondary-foreground: hsl(36, 45%, 25%);
+            --accent: hsl(36, 64%, 57%);
+            --accent-foreground: hsl(36, 72%, 17%);
+            --destructive: hsl(0, 84%, 37%);
+            --destructive-foreground: hsl(0, 0%, 98%);
+            --muted: hsl(36, 33%, 75%);
+            --muted-foreground: hsl(36, 45%, 25%);
+            --card: hsl(36, 46%, 82%);
+            --card-foreground: hsl(36, 45%, 20%);
+            --popover: hsl(0, 0%, 100%);
+            --popover-foreground: hsl(240, 10%, 3.9%);
+            --border: hsl(36, 45%, 60%);
+            --input: hsl(36, 45%, 60%);
+            --ring: hsl(36, 45%, 30%);
+            --radius: 0rem;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: var(--background);
+            color: var(--foreground);
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header styles */
+        header {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        nav {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+                gap: 1.5rem;
+            }
+        }
+
+        nav a {
+            color: inherit;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .button {
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .button-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-foreground);
+            color: var(--primary-foreground);
+        }
+
+        .button-primary {
+            background-color: var(--primary-foreground);
+            color: var(--primary);
+            border: none;
+        }
+
+        /* Main content styles */
+        main {
+            flex: 1;
+        }
+
+        .section {
+            padding: 3rem 0;
+        }
+
+        .section-muted {
+            background-color: var(--muted);
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            color: var(--muted-foreground);
+            margin-bottom: 2rem;
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: var(--primary);
+        }
+
+        .feature-content h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-content p {
+            color: var(--muted-foreground);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            background-color: var(--muted);
+            border-radius: 0.75rem;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: var(--muted);
+            padding: 1.5rem 1rem;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            footer .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        footer p {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        footer nav {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            footer nav {
+                margin-top: 0;
+            }
+        }
+
+        footer nav a {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+            text-decoration: none;
+        }
+
+        footer nav a:hover {
+            text-decoration: underline;
+        }
+        .image-placeholder {
+    width: 100%;
+    height: auto;
+    border-radius: 0.75rem; /* Optional: Adds rounded corners */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+    </style>
+</head>
+<body>
+    <div class="flex flex-col min-h-screen">
+        <header>
+            <a href="#" class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+                </svg>
+                <span>Agricon</span>
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="#">About</a>
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">Contact</a>
+            </nav>
+            <div class="header-buttons">
+                <a href="#" class="button button-outline">Register as Farmer</a>
+                <a href="https://shaktisingh4140.wixsite.com/agricon" class="button button-primary">Shop Now</a>
+            </div>
+        </header>
+        <main>
+            <section class="section section-muted">
+                <div class="container">
+                    <div class="grid">
+                        <div>
+                            <h2 class="section-title">Benefits for Farmers</h2>
+                            <p class="section-description">
+                                Discover how our platform can help you connect directly with buyers, retailers, and consumers,
+                                unlocking new opportunities for your farm.
+                            </p>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <circle cx="12" cy="12" r="6" />
+                                        <circle cx="12" cy="12" r="2" />
+                                    </svg>
+                                    <div class="feature-content">
+                                        <h3>Direct Market Access</h3>
+                                        <p>
+                                            Sell your produce directly to buyers, retailers, and consumers, cutting out the middlemen and
+                                            maximizing your profits.
+                                            
+                                            <h3>Higher Income</h3>
+                                        
+                                            <p>Negotiate prices directly with buyers and enjoy a larger share of the final sale price.</p>
+                                        </p>
+                                        <h3>Broader Customer Reach</h3>
+                                        <p>Connect with a wider network of buyers, retailers, and consumers, expanding your customer base</p>
+                                        <h3>Price Negotiation</h3>
+                                        <p>Negotiate prices directly with buyers, ensuring you get the best value for your produce.</p>
+                                        
+                                        
+                                      
+                                
+                                    </div>
+                                </div>
+                               
+                                <!-- Add more feature items here -->
+                            </div>
+                        </div>
+                         <img src="download (1).jpg" alt="Benefits for Farmers" class="image-placeholder">
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="container">
+                    <div class="grid">
+                         <img src="Indian Farmer by Gajendra Kumar _ 500px.jpg" alt="Benefits for Retailers" class="image-placeholder">
+            <div>
+                        <div>
+                            <h2 class="section-title">Benefits for Retailers</h2>
+                            <p class="section-description">
+                                Discover how our platform can help you access fresh produce directly from farmers, ensuring a reliable
+                                supply and competitive pricing.
+                            </p>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                                        <path d="M6 2v14a2 2 0 0 0 2 2h14" />
+                                        <path d="M18 22V8a2 2 0 0 0-2-2H2" />
+                                    </svg>
+                                    <div class="feature-content">
+                                        <h3>Access to Fresh Produce</h3>
+                                        <p>
+                                            Connect directly with farmers to source the freshest produce, ensuring high quality and longer
+                                            shelf life.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                                      <path d="M6 2v14a2 2 0 0 0 2 2h14" />
+                                      <path d="M18 22V8a2 2 0 0 0-2-2H2" />
+                                  </svg>
+                                
+                                <div class="feature-content">
+                                  <h3>Reliable Supply</h3>
+                                  <p>
+                                    Enjoy a consistent and dependable supply of produce, thanks to our platform's inventory management and logistics support.
+                                  </p>
+                              </div>
+                          </div>
+                          <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                                <path d="M6 2v14a2 2 0 0 0 2 2h14" />
+                                <path d="M18 22V8a2 2 0 0 0-2-2H2" />
+                            </svg>
+                          <div class="feature-content">
+                            <h3>Competative Pricing</h3>
+                            <p>
+                              Negotiate prices directly with farmers and take advantage of our platform's pricing transparency to get the best deals. 
+                            </p>
+                        </div>
+                    </div>
+                                <!-- Add more feature items here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 Agricon. All rights reserved.</p>
+                <nav>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Contact</a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
