@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricon</title>
+    <style>
+        /* Base styles */
+        :root {
+            --background: hsl(36, 39%, 88%);
+            --foreground: hsl(36, 45%, 15%);
+            --primary: hsl(36, 45%, 70%);
+            --primary-foreground: hsl(36, 45%, 11%);
+            --secondary: hsl(40, 35%, 77%);
+            --secondary-foreground: hsl(36, 45%, 25%);
+            --accent: hsl(36, 64%, 57%);
+            --accent-foreground: hsl(36, 72%, 17%);
+            --destructive: hsl(0, 84%, 37%);
+            --destructive-foreground: hsl(0, 0%, 98%);
+            --muted: hsl(36, 33%, 75%);
+            --muted-foreground: hsl(36, 45%, 25%);
+            --card: hsl(36, 46%, 82%);
+            --card-foreground: hsl(36, 45%, 20%);
+            --popover: hsl(0, 0%, 100%);
+            --popover-foreground: hsl(240, 10%, 3.9%);
+            --border: hsl(36, 45%, 60%);
+            --input: hsl(36, 45%, 60%);
+            --ring: hsl(36, 45%, 30%);
+            --radius: 0rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            border-color: var(--border);
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: var(--background);
+            color: var(--foreground);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /* Layout styles */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header styles */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background-color: var(--background);
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--foreground);
+        }
+
+        /* Main content styles */
+        main {
+            flex: 1;
+        }
+
+        section {
+            padding: 3rem 0;
+        }
+
+        .hero {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--accent);
+            color: var(--accent-foreground);
+            text-decoration: none;
+            border-radius: var(--radius);
+        }
+
+        /* Updated Agricon Advantage styles */
+        .agricon-advantage {
+            background-color: #f5efe6;
+            padding: 4rem 0;
+        }
+
+        .agricon-advantage h2 {
+            font-size: 48px;
+            color: #3c2a21;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .agricon-advantage .subtitle {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            font-size: 18px;
+            color: #5c4033;
+        }
+
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .advantage-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .advantage-item {
+            margin-bottom: 30px;
+        }
+
+        .advantage-item h3 {
+            font-size: 24px;
+            color: #3c2a21;
+            margin-bottom: 10px;
+        }
+
+        .advantage-item p {
+            color: #5c4033;
+        }
+
+        .image-placeholder {
+            background-color: #e0d8c9;
+            width: 100%;
+            padding-bottom: 100%; /* Creates a square aspect ratio */
+            border-radius: 8px;
+        }
+
+        /* Benefits section styles */
+        .benefits {
+            background-color: #d2c5b0;
+            padding: 4rem 0;
+        }
+
+        .benefits-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .benefits-text {
+            max-width: 60%;
+        }
+
+        .benefits h2 {
+            font-size: 48px;
+            color: #3c2a21;
+            margin-bottom: 20px;
+        }
+
+        .benefits p {
+            font-size: 18px;
+            color: #3c2a21;
+            margin-bottom: 30px;
+        }
+
+        .benefits-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .benefits-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .benefits-button.primary {
+            background-color: #c4b299;
+            color: #3c2a21;
+        }
+
+        .benefits-button.secondary {
+            background-color: #f5efe6;
+            color: #3c2a21;
+        }
+
+        /* Team styles */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: var(--background);
+            padding: 1rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hero-content,
+            .advantage-grid,
+            .benefits-content {
+                grid-template-columns: 1fr;
+            }
+
+            .agricon-advantage h2,
+            .benefits h2 {
+                font-size: 36px;
+            }
+
+            .agricon-advantage .subtitle,
+            .benefits p {
+                font-size: 16px;
+            }
+
+            .benefits-text {
+                max-width: 100%;
+            }
+
+            .benefits-buttons {
+                flex-direction: column;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+            </svg>
+            <span>Agricon</span>
+        </a>
+        <nav>
+            <a href="https://shaktisingh4140.wixsite.com/agricon">Shop</a>
+            <a href="registration.html">Register(farmer)</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div>
+                        <h1>Connecting Farmers Directly to Retailers and Consumers</h1>
+                        <p>Agricon is revolutionizing the way farmers, retailers, and consumers interact. Our platform enables direct connections, ensuring fresh produce, fair prices, and sustainable practices.</p>
+                        <a href="#" class="button">Shop Now</a>
+                        <a href="learnmore.html" class="button">Learn More</a>
+                    </div>
+                    <img src="photo-1500937386664-56d1dfef3854.jpg" alt="Hero" width="550" height="550">
+                </div>
+            </div>
+        </section>
+
+        <section class="agricon-advantage">
+            <div class="container">
+                <h2>The Agricon Advantage</h2>
+                <p class="subtitle">
+                    Agricon's platform connects farmers directly with retailers and consumers, ensuring fresh
+                    produce, fair prices, and sustainable practices.
+                </p>
+                <div class="advantage-grid">
+                    <ul class="advantage-list">
+                        <li class="advantage-item">
+                            <h3>Fresh Produce</h3>
+                            <p>
+                                Enjoy the freshest fruits and vegetables, directly sourced from local farmers.
+                            </p>
+                        </li>
+                        <li class="advantage-item">
+                            <h3>Fair Prices</h3>
+                            <p>
+                                Eliminate middlemen and enjoy fair, transparent pricing for both farmers and consumers.
+                            </p>
+                        </li>
+                        <li class="advantage-item">
+                            <h3>Sustainable Practices</h3>
+                            <p>
+                                Support local agriculture and reduce your carbon footprint with Agricon's sustainable model.
+                            </p>
+                        </li>
+                    </ul>
+                    <div <!-- Replace the following div with an img tag -->
+            <img src="Premium Photo _ Indian farmer at field.jpg" alt="Agricon Advantage Illustration" class="advantage-image">
+                </div>
+            </div>
+        </section>
+
+        <section class="benefits">
+            <div class="container">
+                <div class="benefits-content">
+                    <div class="benefits-text">
+                        <h2>Benefits for Farmers, Retailers, and Consumers</h2>
+                        <p>
+                            Agricon's platform creates a win-win-win scenario for all stakeholders, ensuring fresh produce, fair prices, and sustainable practices.
+                        </p>
+                    </div>
+                    <div class="benefits-buttons">
+                        <a href="#" class="benefits-button primary">Shop Now</a>
+                        <a href="#" class="benefits-button secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team">
+            <div class="container">
+                <h2>Meet the Agricon Team</h2>
+                <p>Our passionate team is dedicated to revolutionizing the agricultural industry and creating a more sustainable future.</p>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="150.jpg" alt="John Doe">
+                        <h4>ANUSHKA</h4>
+                        <p>TEAM</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="150.jpg" alt="Jane Smith">
+                        <h4>VAISHALI</h4>
+                        <p>TEAM</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="150.jpg" alt="Michael Johnson">
+                        <h4>ADITYA</h4>
+                        <p>TEAM</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="150.jpg" alt="Emily Davis">
+                        <h4>JENISH</h4>
+                        <p>TEAM</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="150.jpg" alt="David Wilson">
+                        <h4>VENUS</h4>
+                        <p>TEAM</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="150.jpg" alt="Sarah Brown">
+                        <h4>SHAKTI</h4>
+                        <p>TEAM</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Agricon. All rights reserved.</p>
+        <nav>
+            <a href="#">Shop</a>
+            <a href="#">Register</a>
+        </nav>
+    </footer>
+</body>
+</html>
