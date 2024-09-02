@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer's Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono&display=swap');
+
+        :root {
+            --background: hsl(36, 39%, 88%);
+            --foreground: hsl(36, 45%, 15%);
+            --primary: hsl(36, 45%, 70%);
+            --primary-foreground: hsl(36, 45%, 11%);
+            --secondary: hsl(40, 35%, 77%);
+            --secondary-foreground: hsl(36, 45%, 25%);
+            --accent: hsl(36, 64%, 57%);
+            --accent-foreground: hsl(36, 72%, 17%);
+            --destructive: hsl(0, 84%, 37%);
+            --destructive-foreground: hsl(0, 0%, 98%);
+            --muted: hsl(36, 33%, 75%);
+            --muted-foreground: hsl(36, 45%, 25%);
+            --card: hsl(36, 46%, 82%);
+            --card-foreground: hsl(36, 45%, 20%);
+            --popover: hsl(0, 0%, 100%);
+            --popover-foreground: hsl(240, 10%, 3.9%);
+            --border: hsl(36, 45%, 60%);
+            --input: hsl(36, 45%, 60%);
+            --ring: hsl(36, 45%, 30%);
+            --radius: 0.5rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: var(--background);
+            color: var(--foreground);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background-color: var(--card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        .menu-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background-color: var(--background);
+            cursor: pointer;
+        }
+
+        @media (min-width: 640px) {
+            .menu-button {
+                display: none;
+            }
+        }
+
+        .search-container {
+            position: relative;
+            margin-left: auto;
+        }
+
+        .search-input {
+            padding: 0.5rem 0.5rem 0.5rem 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--input);
+            background-color: var(--background);
+            width: 200px;
+        }
+
+        @media (min-width: 768px) {
+            .search-input {
+                width: 300px;
+            }
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .user-menu {
+            margin-left: 1rem;
+        }
+
+        .user-avatar {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+        }
+
+        @media (min-width: 1024px) {
+            main {
+                flex-direction: row;
+            }
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        @media (min-width: 1024px) {
+            .sidebar {
+                margin-left: 1rem;
+            }
+        }
+
+        .card {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            padding: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            color: var(--muted-foreground);
+            margin-bottom: 1rem;
+        }
+
+        .button {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+        }
+
+        .button:hover {
+            background-color: var(--accent);
+        }
+
+        .button-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--foreground);
+        }
+
+        .button-outline:hover {
+            background-color: var(--muted);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1rem;
+        }
+
+        .tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab.active {
+            border-bottom-color: var(--accent);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--muted-foreground);
+        }
+
+        .badge {
+            background-color: var(--secondary);
+            color: var(--secondary-foreground);
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--popover);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: var(--radius);
+        }
+
+        .dropdown-content a {
+            color: var(--popover-foreground);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--muted);
+        }
+
+        .show {
+            display: block;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--background);
+            z-index: 100;
+            padding: 1rem;
+        }
+
+        .mobile-menu.show {
+            display: block;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.125rem;
+            color: var(--foreground);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="menu-button" id="mobileMenuButton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" x2="20" y1="12" y2="12" />
+                    <line x1="4" x2="20" y1="6" y2="6" />
+                    <line x1="4" x2="20" y1="18" y2="18" />
+                </svg>
+            </button>
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+                </svg>
+                <span>Farmer's Dashboard</span>
+            </div>
+            <div class="search-container">
+                <input type="search" placeholder="Search products..." class="search-input">
+                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                </svg>
+            </div>
+            <div class="user-menu">
+                <div class="dropdown">
+                    <img src="https://via.placeholder.com/150" alt="User Avatar" class="user-avatar" id="userMenuButton">
+                    <div class="dropdown-content" id="userDropdown">
+                        <a href="#">Settings</a>
+                        <a href="#">Support</a>
+                        <a href="#">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="main-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">Rs1,329</div>
+                        <div class="stat-label">This Week</div>
+                        <div class="stat-change">+25% from last week</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">Rs5,329</div>
+                        <div class="stat-label">This Month</div>
+                        <div class="stat-change">+10% from last month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">7</div>
+                        <div class="stat-label">Pending Deliveries</div>
+                        <div class="stat-change">2 due today</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2 class="card-title">My Products</h2>
+                    <p class="card-description">Manage your product listings, update inventory, and track sales performance.</p>
+                    <a href="dashboard.html">
+    <button class="button">Add New Product</button>
+</a>
+
+                </div>
+                <div class="tabs">
+                    <div class="tab active" data-tab="products">My Products</div>
+                    <div class="tab" data-tab="orders">Recent Orders</div>
+                    <div class="tab" data-tab="notifications">Notifications</div>
+                </div>
+                <div class="tab-content" id="productsTab">
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h2 class="card-title">Product List</h2>
+                            <div>
+                                <button class="button button-outline">Filter</button>
+                                <button class="button button-outline">Export</button>
+                            </div>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Inventory</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Organic Carrots</td>
+                                    <td>Vegetables</td>
+                                    <td>Rs2.99/kg</td>
+                                    <td>50 Kg</td>
+                                    <td><span class="badge">In Stock</span></td>
+                                    <td>
+                                        <button class="button button-outline">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Heirloom Tomatoes</td>
+                                    <td>Vegetables</td>
+                                    <td>Rs3.49/kg</td>
+                                    <td>25 Kg</td>
+                                    <td><span class="badge">In Stock</span></td>
+                                    <td>
+                                        <button class="button button-outline">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Organic Quinoa</td>
+                                    <td>Grains</td>
+                                    <td>Rs4.99/kg</td>
+                                    <td>10 Kg</td>
+                                    <td><span class="badge">Low Stock</span></td>
+                                    <td>
+                                        <button class="button button-outline">Edit</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-content" id="ordersTab" style="display: none;">
+                    <div class="card">
+                        <h2 class="card-title">Recent Orders</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#1234</td>
+                                    <td>Aditya</td>
+                                    <td>2023-05-01</td>
+                                    <td>Rs56.78</td>
+                                    <td><span class="badge">Shipped</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#1235</td>
+                                    <td>Jenish</td>
+                                    <td>2023-05-02</td>
+                                    <td>Rs89.99</td>
+                                    <td><span class="badge">Processing</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-content" id="notificationsTab" style="display: none;">
+                    <div class="card">
+                        <h2 class="card-title">Notifications</h2>
+                        <ul>
+                            <li>New order received (#1236)</li>
+                            <li>Low stock alert: Organic Quinoa</li>
+                            <li>Payment processed for order #1234</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="card">
+                    <h2 class="card-title">Quick Actions</h2>
+<a href="dashboard.html" style="display: block; width: 100%; margin-bottom: 0.5rem;">
+    <button class="button" style="width: 100%;">Add New Product</button>
+</a>
+<a href="view-reports-link" style="display: block; width: 100%;">
+    <button class="button button-outline" style="width: 100%;">View Reports</button>
+</a>
+
+                </div>
+                <div class="card">
+                    <h2 class="card-title">Upcoming Deliveries</h2>
+                    <ul>
+                        <li>Order #1235 - Due Today</li>
+                        <li>Order #1237 - Due Tomorrow</li>
+                        <li>Order #1238 - Due in 2 days</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+                </svg>
+                <span>Farmer's Dashboard</span>
+            </div>
+            <button class="mobile-menu-close" id="mobileMenuClose">&times;</button>
+        </div>
+        <div class="mobile-menu-items">
+            <a href="#" class="mobile-menu-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m7.5 4.27 9 5.15" />
+                    <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+                    <path d="m3.3 7 8.7 5 8.7-5" />
+                    <path d="M12 22V12" />
+                </svg>
+                My Products
+            </a>
+            <a href="#" class="mobile-menu-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M8 12h8" />
+                    <path d="M12 8v8" />
+                </svg>
+                New Listing
+            </a>
+            <a href="#" class="mobile-menu-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="8" cy="21" r="1" />
+                    <circle cx="19" cy="21" r="1" />
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                </svg>
+                Orders
+            </a>
+            <a href="#" class="mobile-menu-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                </svg>
+                Profile
+            </a>
+        </div>
+    </div>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('show');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('show');
+        });
+
+        // User dropdown toggle
+        const userMenuButton = document.getElementById('userMenuButton');
+        const userDropdown = document.getElementById('userDropdown');
+
+        userMenuButton.addEventListener('click', () => {
+            userDropdown.classList.toggle('show');
+        });
+
+        // Close the dropdown if clicked outside
+        window.addEventListener('click', (event) => {
+            if (!event.target.matches('.user-avatar')) {
+                if (userDropdown.classList.contains('show')) {
+                    userDropdown.classList.remove('show');
+                }
+            }
+        });
+
+        // Tab switching
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.getAttribute('data-tab');
+                
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                tabContents.forEach(content => {
+                    content.style.display = content.id === `${tabName}Tab` ? 'block' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
