@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="registration.css">
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title">Farmer Registration</h1>
+            <p class="card-description">Please provide the following details about yourself and your farm.</p>
+        </div>
+        <div class="card-content">
+            <form id="farmerRegistrationForm" class="form-grid">
+                <div class="grid-col">
+                    <div class="grid-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input id="fullName" placeholder="Venus">
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input id="age" type="number" placeholder="35">
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender">
+                                <option value="" disabled selected>Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input id="phone" type="tel" placeholder="+91 1234567890">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea id="address" rows="3" placeholder="HOUSE NUMBER"></textarea>
+                    </div>
+                    <div class="grid-row">
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input id="state" placeholder="UTTAR PRADESH">
+                        </div>
+                        <div class="form-group">
+                            <label for="district">District</label>
+                            <input id="district" placeholder="AZAMGHAR">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email (optional)</label>
+                        <input id="email" type="email" placeholder="anushka@example.com">
+                    </div>
+                </div>
+                <div class="grid-col">
+                    <div class="form-group">
+                        <label for="aadhaar">Aadhaar Number</label>
+                        <input id="aadhaar" placeholder="123456789012">
+                    </div>
+                    <div class="form-group">
+                        <label for="pan">PAN Number (if applicable)</label>
+                        <input id="pan" placeholder="ABCDE1234F">
+                    </div>
+                </div>
+                <div class="grid-col">
+                    <div class="form-group">
+                        <label for="farmName">Farm Name (if any)</label>
+                        <input id="farmName" placeholder="Green Acres Farm">
+                    </div>
+                    <div class="form-group">
+                        <label for="farmAddress">Farm Address</label>
+                        <textarea id="farmAddress" rows="3" placeholder="your farm address"></textarea>
+                    </div>
+                    <div class="grid-row">
+                        <div class="form-group">
+                            <label for="farmType">Type of Farm</label>
+                            <select id="farmType">
+                                <option value="" disabled selected>Select farm type</option>
+                                <option value="crops">Crops</option>
+                                <option value="livestock">Livestock</option>
+                                <option value="mixed">Mixed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="farmSize">Size of Farm</label>
+                            <input id="farmSize" type="number" placeholder="10">
+                            <div class="radio-group">
+                                <input type="radio" id="farmSizeUnit-acres" name="farmSizeUnit" value="acres" checked>
+                                <label for="farmSizeUnit-acres">Acres</label>
+                                <input type="radio" id="farmSizeUnit-hectares" name="farmSizeUnit" value="hectares">
+                                <label for="farmSizeUnit-hectares">Hectares</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="farmingType">Type of Farming</label>
+                        <select id="farmingType">
+                            <option value="" disabled selected>Select farming type</option>
+                            <option value="organic">Organic</option>
+                            <option value="conventional">Conventional</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid-col">
+                    <div class="form-group">
+                        <label for="bankAccount">Bank Account Number</label>
+                        <input id="bankAccount" placeholder="123456789012">
+                    </div>
+                    <div class="form-group">
+                        <label for="bankName">Bank Name</label>
+                        <input id="bankName" placeholder="ABC Bank">
+                    </div>
+                    <div class="form-group">
+                        <label for="ifscCode">IFSC Code</label>
+                        <input id="ifscCode" placeholder="ABCD0012345">
+                    </div>
+                </div>
+                <div class="grid-col">
+                    <div class="form-group">
+                        <label for="produce">Types of Produce Available</label>
+                        <textarea id="produce" rows="3" placeholder="Vegetables, Grains, Fruits"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="certifications">Quality Certifications (if any)</label>
+                        <textarea id="certifications" rows="3" placeholder="Organic, Fair Trade"></textarea>
+                    </div>
+                </div>
+                <div class="grid-col">
+                    <div class="form-group">
+                        <label>Preferred Method of Contact</label>
+                        <div class="radio-group">
+                            <input type="radio" id="contactPreference-phone" name="contactPreference" value="phone" checked>
+                            <label for="contactPreference-phone">Phone</label>
+                            <input type="radio" id="contactPreference-email" name="contactPreference" value="email">
+                            <label for="contactPreference-email">Email</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="requirements">Any specific requirements or conditions for selling produce</label>
+                        <textarea id="requirements" rows="3" placeholder="Please enter any specific requirements or conditions"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer">
+            <button type="button" onclick="window.location.href='info.html';">Register</button>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
