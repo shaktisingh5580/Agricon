@@ -1,0 +1,133 @@
+:root {
+    --background: hsl(36, 39%, 88%);
+    --foreground: hsl(36, 45%, 15%);
+    --primary: hsl(36, 45%, 70%);
+    --primary-foreground: hsl(36, 45%, 11%);
+    --muted-foreground: hsl(36, 45%, 25%);
+    --border: hsl(36, 45%, 60%);
+    --input: hsl(36, 45%, 60%);
+    --ring: hsl(36, 45%, 30%);
+}
+
+body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Space Mono', monospace;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Sans', sans-serif;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header, footer {
+    background-color: var(--background);
+    border-color: var(--border);
+}
+
+/* Utility classes */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.min-h-screen {
+    min-height: 100vh;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.gap-4 {
+    gap: 1rem;
+}
+
+.rounded-md {
+    border-radius: 0.375rem;
+}
+
+.bg-primary {
+    background-color: var(--primary);
+}
+
+.bg-primary-foreground {
+    background-color: var(--primary-foreground);
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.text-primary-foreground {
+    color: var(--primary-foreground);
+}
+
+.border {
+    border-width: 1px;
+    border-color: var(--border);
+}
+
+.hover\:underline:hover {
+    text-decoration: underline;
+}
+
+.underline-offset-4 {
+    text-underline-offset: 0.25rem;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+    .md\:py-24 {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+
+    .md\:text-xl\/relaxed {
+        font-size: 1.25rem;
+        line-height: 1.75;
+    }
+}
+
+@media (min-width: 1024px) {
+    .lg\:py-32 {
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+    }
+
+    .lg\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lg\:order-last {
+        order: 1;
+    }
+}
