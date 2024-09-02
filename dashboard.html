@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Your Farm Products</title>
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #f5e7cd;
+            color: #5d4f3f;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8e7ce;
+            border-radius: 8px;
+            border: 1px solid #d9b77e;
+        }
+
+        label {
+            font-size: 1em;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d9b77e;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1em;
+            background-color: #fdf6e3;
+            color: #5d4f3f;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        input[type="file"] {
+            font-family: inherit;
+        }
+
+        .full-width {
+            grid-column: 1 / 3;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 1em;
+            background-color: #d9b77e;
+            color: #5d4f3f;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c2a168;
+        }
+
+        .terms {
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>List Your Farm Products</h1>
+    <form action="#" method="POST">
+        <div>
+            <label for="product-type">Product Type</label>
+            <select id="product-type" name="product-type" required>
+                <option value="Grains">Grains</option>
+                <option value="Vegetables">Vegetables</option>
+                <option value="Eggs">Eggs</option>
+                <option value="Honey">Honey</option>
+                <option value="Oil">Oil</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="product-name">Product Name</label>
+            <input type="text" id="product-name" name="product-name" placeholder="Enter product name" required>
+        </div>
+
+        <div>
+            <label for="price">Price</label>
+            <input type="text" id="price" name="price" placeholder="Enter price" required>
+        </div>
+
+        <div>
+            <label for="quantity">Quantity</label>
+            <input type="text" id="quantity" name="quantity" placeholder="eg:KG,LITERS,DOZEN" required>
+        </div>
+
+        <div>
+            <label for="pickup-address">Pickup Address</label>
+            <textarea id="pickup-address" name="pickup-address" rows="3" placeholder="Enter pickup address" required></textarea>
+        </div>
+
+        <div>
+            <label for="product-image">Product Image</label>
+            <input type="file" id="product-image" name="product-image" accept="image/*" required>
+        </div>
+
+        <div class="full-width">
+            <button type="submit">List Product</button>
+        </div>
+
+        <div class="terms full-width">
+            By listing your product, you agree to our terms and conditions.
+        </div>
+    </form>
+</body>
+</html>
