@@ -1,0 +1,145 @@
+:root {
+  --background: hsl(36, 39%, 88%);
+  --foreground: hsl(36, 45%, 15%);
+  --primary: hsl(36, 45%, 70%);
+  --primary-foreground: hsl(36, 45%, 11%);
+  --secondary: hsl(40, 35%, 77%);
+  --secondary-foreground: hsl(36, 45%, 25%);
+  --accent: hsl(36, 64%, 57%);
+  --accent-foreground: hsl(36, 72%, 17%);
+  --destructive: hsl(0, 84%, 37%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --muted: hsl(36, 33%, 75%);
+  --muted-foreground: hsl(36, 45%, 25%);
+  --card: hsl(36, 46%, 82%);
+  --card-foreground: hsl(36, 45%, 20%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(240, 10%, 3.9%);
+  --border: hsl(36, 45%, 60%);
+  --input: hsl(36, 45%, 60%);
+  --ring: hsl(36, 45%, 30%);
+  --radius: 0rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Space Mono', monospace;
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Sans', sans-serif;
+}
+
+.card {
+  background-color: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  max-width: 64rem;
+  padding: 2rem;
+}
+
+.card-header {
+  margin-bottom: 2rem;
+}
+
+.card-title {
+  color: var(--card-foreground);
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.card-description {
+  color: var(--muted-foreground);
+}
+
+.form-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .form-grid {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid-col {
+  display: grid;
+  gap: 1rem;
+}
+
+.grid-row {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  color: var(--foreground);
+  font-weight: bold;
+}
+
+input, select, textarea {
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.radio-group {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.radio-group input[type="radio"] {
+  width: auto;
+  margin-right: 0.25rem;
+}
+
+.card-footer {
+  margin-top: 2rem;
+  text-align: right;
+}
+
+button {
+  background-color: var(--primary);
+  border: none;
+  border-radius: var(--radius);
+  color: var(--primary-foreground);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--accent);
+}
