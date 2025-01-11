@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,12 +29,17 @@
             --radius: 0rem;
         }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Space Mono', monospace;
             background-color: var(--background);
             color: var(--foreground);
-            margin: 0;
-            padding: 0;
+            line-height: 1.6;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -43,6 +47,7 @@
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
@@ -52,7 +57,10 @@
         header {
             background-color: var(--primary);
             color: var(--primary-foreground);
-            padding: 1rem 1.5rem;
+            padding: 1rem 0;
+        }
+
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -91,8 +99,14 @@
         }
 
         .header-buttons {
-            display: flex;
-            gap: 0.5rem;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .header-buttons {
+                display: flex;
+                gap: 0.5rem;
+            }
         }
 
         .button {
@@ -114,6 +128,57 @@
             background-color: var(--primary-foreground);
             color: var(--primary);
             border: none;
+        }
+
+        /* Mobile menu styles */
+        .mobile-menu-button {
+            display: block;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-menu-button {
+                display: none;
+            }
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--background);
+            padding: 2rem;
+            z-index: 1000;
+        }
+
+        .mobile-menu.show {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Main content styles */
@@ -180,15 +245,15 @@
 
         .image-placeholder {
             width: 100%;
-            aspect-ratio: 1;
-            background-color: var(--muted);
-            border-radius: 0.75rem;
+            height: auto;
+            border-radius: 0.75rem; 
+            object-fit: cover; 
         }
 
         /* Footer styles */
         footer {
             background-color: var(--muted);
-            padding: 1.5rem 1rem;
+            padding: 1.5rem 0;
             text-align: center;
         }
 
@@ -226,18 +291,11 @@
         footer nav a:hover {
             text-decoration: underline;
         }
-        .image-placeholder {
-    width: 100%;
-    height: auto;
-    border-radius: 0.75rem; 
-    object-fit: cover; 
-}
-
     </style>
 </head>
 <body>
-    <div class="flex flex-col min-h-screen">
-        <header>
+    <header>
+        <div class="container header-content">
             <a href="#" class="logo">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
                     <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
@@ -256,122 +314,155 @@
                 <a href="registration.html" class="button button-outline">Register as Farmer</a>
                 <a href="https://shaktisingh4140.wixsite.com/agricon" class="button button-primary">Shop Now</a>
             </div>
-        </header>
-        <main>
-            <section class="section section-muted">
-                <div class="container">
-                    <div class="grid">
-                        <div>
-                            <h2 class="section-title">Benefits for Farmers</h2>
-                            <p class="section-description">
-                                Discover how our platform can help you connect directly with buyers, retailers, and consumers,
-                                unlocking new opportunities for your farm.
-                            </p>
-                            <div class="feature-list">
-                                <div class="feature-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                                        <circle cx="12" cy="12" r="10" />
-                                        <circle cx="12" cy="12" r="6" />
-                                        <circle cx="12" cy="12" r="2" />
-                                    </svg>
-                                    <div class="feature-content">
-                                        <h3>Direct Market Access</h3>
-                                        <p>
-                                            Sell your produce directly to buyers, retailers, and consumers, cutting out the middlemen and
-                                            maximizing your profits.
-                                            
-                                            <h3>Higher Income</h3>
-                                        
-                                            <p>Negotiate prices directly with buyers and enjoy a larger share of the final sale price.</p>
-                                        </p>
-                                        <h3>Broader Customer Reach</h3>
-                                        <p>Connect with a wider network of buyers, retailers, and consumers, expanding your customer base</p>
-                                        <h3>Price Negotiation</h3>
-                                        <p>Negotiate prices directly with buyers, ensuring you get the best value for your produce.</p>
-                                        
-                                        
-                                      
-                                
-                                    </div>
-                                </div>
-                               
-                                
-                            </div>
-                        </div>
-                         <img src="download (1).jpg" alt="Benefits for Farmers" class="image-placeholder">
-                    </div>
-                </div>
-            </section>
-            <section class="section">
-                <div class="container">
-                    <div class="grid">
-                         <img src="Indian Farmer by Gajendra Kumar _ 500px.jpg" alt="Benefits for Retailers" class="image-placeholder">
-            <div>
-                        <div>
-                            <h2 class="section-title">Benefits for Retailers</h2>
-                            <p class="section-description">
-                                Discover how our platform can help you access fresh produce directly from farmers, ensuring a reliable
-                                supply and competitive pricing.
-                            </p>
-                            <div class="feature-list">
-                                <div class="feature-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                                        <path d="M6 2v14a2 2 0 0 0 2 2h14" />
-                                        <path d="M18 22V8a2 2 0 0 0-2-2H2" />
-                                    </svg>
-                                    <div class="feature-content">
-                                        <h3>Access to Fresh Produce</h3>
-                                        <p>
-                                            Connect directly with farmers to source the freshest produce, ensuring high quality and longer
-                                            shelf life.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="feature-item">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                                      <path d="M6 2v14a2 2 0 0 0 2 2h14" />
-                                      <path d="M18 22V8a2 2 0 0 0-2-2H2" />
-                                  </svg>
-                                
-                                <div class="feature-content">
-                                  <h3>Reliable Supply</h3>
-                                  <p>
-                                    Enjoy a consistent and dependable supply of produce, thanks to our platform's inventory management and logistics support.
-                                  </p>
-                              </div>
-                          </div>
-                          <div class="feature-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                                <path d="M6 2v14a2 2 0 0 0 2 2h14" />
-                                <path d="M18 22V8a2 2 0 0 0-2-2H2" />
-                            </svg>
-                          <div class="feature-content">
-                            <h3>Competative Pricing</h3>
-                            <p>
-                              Negotiate prices directly with farmers and take advantage of our platform's pricing transparency to get the best deals. 
-                            </p>
-                        </div>
-                    </div>
-                            
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <footer>
-            <div class="container">
-                <p>&copy; 2024 Agricon. All rights reserved.</p>
-                <nav>
-                    <a href="#">Privacy</a>
-                    <a href="#">Terms</a>
-                    <a href="#">Contact</a>
-                </nav>
-            </div>
-        </footer>
+            <button class="mobile-menu-button" id="mobileMenuButton">☰</button>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">About</a>
+            <a href="#">Features</a>
+            <a href="#">Pricing</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="header-buttons">
+            <a href="registration.html" class="button button-outline">Register as Farmer</a>
+            <a href="https://shaktisingh4140.wixsite.com/agricon" class="button button-primary">Shop Now</a>
+        </div>
     </div>
+
+    <main>
+        <section class="section section-muted">
+            <div class="container">
+                <div class="grid">
+                    <div>
+                        <h2 class="section-title">Benefits for Farmers</h2>
+                        <p class="section-description">
+                            Discover how our platform can help you connect directly with buyers, retailers, and consumers,
+                            unlocking new opportunities for your farm.
+                        </p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="12" r="6" />
+                                    <circle cx="12" cy="12" r="2" />
+                                </svg>
+                                <div class="feature-content">
+                                    <h3>Direct Market Access</h3>
+                                    <p>
+                                        Sell your produce directly to buyers, retailers, and consumers, cutting out the middlemen and
+                                        maximizing your profits.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                                    <path d="M12 2v20" />
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                </svg>
+                                <div class="feature-content">
+                                    <h3>Higher Income</h3>
+                                    <p>Negotiate prices directly with buyers and enjoy a larger share of the final sale price.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                                    <path d="M17 6.1H3" />
+                                    <path d="M21 12.1H3" />
+                                    <path d="M15.1 18H3" />
+                                </svg>
+                                <div class="feature-content">
+                                    <h3>Broader Customer Reach</h3>
+                                    <p>Connect with a wider network of buyers, retailers, and consumers, expanding your customer base</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                                    <line x1="12" y1="1" x2="12" y2="23" />
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                </svg>
+                                <div class="feature-content">
+                                    <h3>Price Negotiation</h3>
+                                    <p>Negotiate prices directly with buyers, ensuring you get the best value for your produce.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="download (1).jpg" alt="Benefits for Farmers" class="image-placeholder">
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container">
+                <div class="grid">
+                    <img src="Indian Farmer by Gajendra Kumar _ 500px.jpg" alt="Benefits for Retailers" class="image-placeholder">
+                    <div>
+                        <h2 class="section-title">Benefits for Retailers</h2>
+                        <p class="section-description">
+                            Discover how our platform can help you access fresh produce directly from farmers, ensuring a reliable
+                            supply and competitive pricing.
+                        </p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                                    <path d="M6 2v14a2 2 0 0 0 2 2h14" />
+                                    <path d="M18 22V8a2 2 0 0 0-2-2H2" />
+                                </svg>
+                                <div class="feature-content">
+                                    <h3>Access to Fresh Produce</h3>
+                                    <p>
+                                        Connect directly with farmers to source the freshest produce, ensuring high quality and longer
+                                        shelf life.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                                    <path d="M6 2v14a2 2 0 0 0 2 2h14" />
+                                    <path d="M18 22V8a2 2 0 0 0-2-2H2" />
+                                </svg>
+                                <div class="feature-content">
+                                    <h3>Reliable Supply</h3>
+                                    <p>
+                                        Enjoy a consistent and dependable supply of produce, thanks to our platform's inventory management and logistics support.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                                    <path d="M6 2v14a2 2 0 0 0 2 2h14" />
+                                    <path d="M18 22V8a2 2 0 0 0-2-2H2" />
+                                </svg>
+                                <div class="feature-content">
+                                    <h3>Competitive Pricing</h3>
+                                    <p>
+                                        Negotiate prices directly with farmers and take advantage of our platform's pricing transparency to get the best deals.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Agricon. All rights reserved.</p>
+            <nav>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+    </footer>
+
     <script>
-           // Mobile menu toggle
+        // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobileMenuButton');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuClose = document.getElementById('mobileMenuClose');
@@ -386,3 +477,4 @@
     </script>
 </body>
 </html>
+
