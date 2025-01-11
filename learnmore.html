@@ -229,8 +229,8 @@
         .image-placeholder {
     width: 100%;
     height: auto;
-    border-radius: 0.75rem; /* Optional: Adds rounded corners */
-    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-radius: 0.75rem; 
+    object-fit: cover; 
 }
 
     </style>
@@ -295,7 +295,7 @@
                                     </div>
                                 </div>
                                
-                                <!-- Add more feature items here -->
+                                
                             </div>
                         </div>
                          <img src="download (1).jpg" alt="Benefits for Farmers" class="image-placeholder">
@@ -352,7 +352,7 @@
                             </p>
                         </div>
                     </div>
-                                <!-- Add more feature items here -->
+                            
                             </div>
                         </div>
                     </div>
@@ -370,5 +370,19 @@
             </div>
         </footer>
     </div>
+    <script>
+           // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('show');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('show');
+        });
+    </script>
 </body>
 </html>
