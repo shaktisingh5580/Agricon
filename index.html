@@ -66,6 +66,18 @@
             background-color: var(--background);
         }
 
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--foreground);
+            font-weight: bold;
+        }
+
+        .logo svg {
+            margin-right: 0.5rem;
+        }
+
         nav {
             display: flex;
             gap: 1rem;
@@ -74,6 +86,47 @@
         nav a {
             text-decoration: none;
             color: var(--foreground);
+        }
+
+        /* Mobile menu styles */
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100%;
+            background-color: var(--background);
+            padding: 2rem;
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .mobile-menu.show {
+            right: 0;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu nav {
+            flex-direction: column;
+            gap: 1rem;
         }
 
         /* Main content styles */
@@ -153,10 +206,9 @@
             color: #5c4033;
         }
 
-        .image-placeholder {
-            background-color: #e0d8c9;
+        .advantage-image {
             width: 100%;
-            padding-bottom: 100%; 
+            height: auto;
             border-radius: 8px;
         }
 
@@ -238,10 +290,27 @@
 
         /* Responsive styles */
         @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: block;
+            }
+
+            header nav {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
             .hero-content,
             .advantage-grid,
             .benefits-content {
                 grid-template-columns: 1fr;
+            }
+
+            .hero-content img {
+                width: 100%;
+                height: auto;
             }
 
             .agricon-advantage h2,
@@ -283,7 +352,18 @@
             <a href="learnmore.html">About</a>
             <a href="#">Contact</a>
         </nav>
+        <button class="mobile-menu-button" id="mobileMenuButton">☰</button>
     </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
+        <nav>
+            <a href="https://shaktisingh4140.wixsite.com/agricon">Shop</a>
+            <a href="registration.html">Register(farmer)</a>
+            <a href="learnmore.html">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </div>
 
     <main>
         <section class="hero">
@@ -328,8 +408,7 @@
                             </p>
                         </li>
                     </ul>
-                    <div <!-- Replace the following div with an img tag -->
-            <img src="Premium Photo _ Indian farmer at field.jpg" alt="Agricon Advantage Illustration" class="advantage-image">
+                    <img src="Premium Photo _ Indian farmer at field.jpg" alt="Agricon Advantage Illustration" class="advantage-image">
                 </div>
             </div>
         </section>
@@ -357,32 +436,26 @@
                 <p>Our passionate team is dedicated to revolutionizing the agricultural industry and creating a more sustainable future.</p>
                 <div class="team-grid">
                     <div class="team-member">
-                        
                         <h4>ANUSHKA</h4>
                         <p>TEAM</p>
                     </div>
                     <div class="team-member">
-                        
                         <h4>VAISHALI</h4>
                         <p>TEAM</p>
                     </div>
                     <div class="team-member">
-                        
                         <h4>ADITYA</h4>
                         <p>TEAM</p>
                     </div>
                     <div class="team-member">
-                        
                         <h4>JENISH</h4>
                         <p>TEAM</p>
                     </div>
                     <div class="team-member">
-                        
                         <h4>VENUS</h4>
                         <p>TEAM</p>
                     </div>
                     <div class="team-member">
-                        
                         <h4>SHAKTI</h4>
                         <p>TEAM</p>
                     </div>
@@ -399,7 +472,7 @@
         </nav>
     </footer>
     <script>
-           // Mobile menu toggle
+        // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobileMenuButton');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuClose = document.getElementById('mobileMenuClose');
@@ -414,3 +487,4 @@
     </script>
 </body>
 </html>
+
