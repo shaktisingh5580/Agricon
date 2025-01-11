@@ -156,7 +156,7 @@
         .image-placeholder {
             background-color: #e0d8c9;
             width: 100%;
-            padding-bottom: 100%; /* Creates a square aspect ratio */
+            padding-bottom: 100%; 
             border-radius: 8px;
         }
 
@@ -398,5 +398,19 @@
             <a href="#">Register</a>
         </nav>
     </footer>
+    <script>
+           // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('show');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('show');
+        });
+    </script>
 </body>
 </html>
